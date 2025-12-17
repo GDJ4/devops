@@ -1,0 +1,20 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Upgrade packages (safe)
+  apt:
+    upgrade: safe
+
+- name: Install base packages
+  apt:
+    name: "{{ base_packages }}"
+    state: present
+
+- name: Ensure fail2ban is enabled and running
+  service:
+    name: fail2ban
+    state: started
+    enabled: true

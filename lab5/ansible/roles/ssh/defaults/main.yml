@@ -1,0 +1,3 @@
+---
+ssh_user: "{{ ansible_user | default('root') }}"
+ssh_public_key_src: "{{ role_path }}/files/authorized_key.pub"

@@ -1,0 +1,12 @@
+---
+- name: Configure web server with base tools, nginx, app, and SSH key
+  hosts: web
+  become: true
+  vars:
+    # Можно переопределить через --extra-vars
+    app_root: /var/www/static-site
+  roles:
+    - { role: base, tags: ["base"] }
+    - { role: nginx, tags: ["nginx"] }
+    - { role: app, tags: ["app"] }
+    - { role: ssh, tags: ["ssh"] }

@@ -1,0 +1,45 @@
+---
+- name: Ensure app root exists
+  file:
+    path: "{{ app_root }}"
+    state: directory
+    owner: "{{ app_owner }}"
+    group: "{{ app_group }}"
+    mode: "0755"
+
+- name: Deploy static site archive
+  unarchive:
+    src: "{{ app_archive }}"
+    dest: "{{ app_root }}"
+    owner: "{{ app_owner }}"
+    group: "{{ app_group }}"
+    remote_src: false
+  notify: Reload nginx
+
+- name: Ensure directory permissions are correct
+  find:
+    paths: "{{ app_root }}"
+    file_type: directory
+  register: app_dirs
+
+- name: Set directory permissions to 0755
+  file:
+    path: "{{ item.path }}"
+    mode: "0755"
+    owner: "{{ app_owner }}"
+    group: "{{ app_group }}"
+  loop: "{{ app_dirs.files }}"
+
+- name: Ensure file permissions are correct
+  find:
+    paths: "{{ app_root }}"
+    file_type: file
+  register: app_files
+
+- name: Set file permissions to 0644
+  file:
+    path: "{{ item.path }}"
+    mode: "0644"
+    owner: "{{ app_owner }}"
+    group: "{{ app_group }}"
+  loop: "{{ app_files.files }}"

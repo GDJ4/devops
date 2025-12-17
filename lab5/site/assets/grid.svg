@@ -1,0 +1,26 @@
+<svg width="600" height="420" viewBox="0 0 600 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="420" rx="32" fill="#0C1327"/>
+  <g stroke="#1F2937" stroke-width="1">
+    <path d="M60 0v420M120 0v420M180 0v420M240 0v420M300 0v420M360 0v420M420 0v420M480 0v420M540 0v420" opacity="0.55"/>
+    <path d="M0 60h600M0 120h600M0 180h600M0 240h600M0 300h600M0 360h600" opacity="0.55"/>
+  </g>
+  <g filter="url(#glow)">
+    <circle cx="180" cy="160" r="32" fill="#34D399"/>
+    <circle cx="320" cy="240" r="42" fill="#818CF8"/>
+    <circle cx="440" cy="150" r="24" fill="#A855F7"/>
+  </g>
+  <rect x="110" y="280" width="380" height="70" rx="14" fill="#0B1021" stroke="#1F2937" stroke-width="2"/>
+  <rect x="130" y="298" width="120" height="12" rx="6" fill="#334155"/>
+  <rect x="130" y="318" width="220" height="12" rx="6" fill="#475569"/>
+  <rect x="130" y="338" width="160" height="12" rx="6" fill="#1E293B"/>
+  <path d="M130 282c30-28 64-42 98-24 52 29 105 25 156-12 46-34 97-38 152-8" stroke="#34D399" stroke-width="3" fill="none"/>
+  <defs>
+    <filter id="glow" x="100" y="80" width="380" height="200" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+</svg>

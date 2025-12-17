@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Static site | Lab 6.1</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__content">
+      <p class="eyebrow">Lab 6.1 · Static site + rsync deploy</p>
+      <h1>Ship a static site with nginx and rsync</h1>
+      <p class="lede">A compact static page you can sync to a remote host in seconds. Keep the layout simple, the files small, and deployments repeatable.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#deploy">View deploy steps</a>
+        <a class="btn btn--ghost" href="https://rsync.samba.org" target="_blank" rel="noreferrer">rsync docs</a>
+      </div>
+    </div>
+    <div class="hero__visual">
+      <img src="assets/grid.svg" alt="Decorative grid" />
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="panel">
+      <div class="panel__header">
+        <p class="eyebrow">Why this stack</p>
+        <h2>Static files, stable delivery</h2>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3>Fast sync</h3>
+          <p>rsync transfers only the changed bytes, so updating the server stays quick even on slow links.</p>
+        </article>
+        <article class="card">
+          <h3>Predictable serving</h3>
+          <p>nginx serves files straight from disk with caching headers you control. No runtime surprises.</p>
+        </article>
+        <article class="card">
+          <h3>One command deploy</h3>
+          <p>The provided script pushes <code>site/</code> to the server path you choose and can reload nginx for you.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="deploy">
+      <div class="panel__header">
+        <p class="eyebrow">How to ship</p>
+        <h2>Deploy in three steps</h2>
+      </div>
+      <ol class="steps">
+        <li><span class="step-number">1</span><div><strong>Install nginx on the server.</strong> Point its root to your deploy path (example in <code>infra/nginx.static-site.conf</code>).</div></li>
+        <li><span class="step-number">2</span><div><strong>Set SSH access.</strong> Ensure your key is allowed on the server; keep <code>REMOTE_HOST</code>, <code>REMOTE_USER</code>, and <code>REMOTE_PATH</code> ready.</div></li>
+        <li><span class="step-number">3</span><div><strong>Run <code>./deploy.sh</code>.</strong> The script syncs <code>site/</code> to the server and can reload nginx.</div></li>
+      </ol>
+      <pre class="code">REMOTE_HOST=203.0.113.10 \
+REMOTE_USER=deploy \
+REMOTE_PATH=/var/www/static-site \
+./deploy.sh</pre>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Built for the DevOps lab: simple static hosting with reproducible rsync deploys.</p>
+  </footer>
+</body>
+</html>

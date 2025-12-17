@@ -1,0 +1,35 @@
+---
+- name: Install nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Ensure web root exists
+  file:
+    path: "{{ nginx_web_root }}"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: "0755"
+
+- name: Deploy nginx site config
+  template:
+    src: static-site.conf.j2
+    dest: /etc/nginx/sites-available/static-site
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Reload nginx
+
+- name: Enable site
+  file:
+    src: /etc/nginx/sites-available/static-site
+    dest: /etc/nginx/sites-enabled/static-site
+    state: link
+  notify: Reload nginx
+
+- name: Disable default nginx site
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+  notify: Reload nginx

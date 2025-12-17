@@ -1,0 +1,7 @@
+---
+- name: Add SSH authorized key for user
+  authorized_key:
+    user: "{{ ssh_user }}"
+    state: present
+    key: "{{ lookup('file', ssh_public_key_src) }}"
+    manage_dir: true

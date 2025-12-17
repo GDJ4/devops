@@ -1,0 +1,5 @@
+---
+app_root: /var/www/static-site
+app_archive: "{{ role_path }}/files/static-site.tar.gz"
+app_owner: www-data
+app_group: www-data
