@@ -1,0 +1,9 @@
+.git
+*.docx
+*.md
+k8s
+.github
+bin
+tmp
+**/*.log
+
